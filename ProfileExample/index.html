@@ -18,8 +18,24 @@
         <p>Address: 1348 Buckingham PL, Cookeville, TN 38501</p>
         <p>Assignment: Johnson Hall</p>
 
-        <input id = "txtPayRate">
-        <input id = "txtHours">
+        <div class = "form-group" id = "divHours">
+            <label for = "txtPayRate">PayRate</label>
+            <input id = "txtPayRate">
+        </div>
+
+        <div class = "form-group" id = "divHours">
+            <label for = "txtHours">Hours Worked</label>
+            <input id = "txtHours">
+        </div>
+
+        <div class = "form-group">
+            <label for = "cboEmployeeType">Employee Type</label>
+            <select id = "cboEmployeeType">
+                <option></option>
+                <option value= "FULL">Full Time</option>
+                <option value= "PART">Part Time</option>
+            </select>
+        </div>
 
         <button type = "button" id = "btnTest" class = "btn btn-warning mb-3"> Calculate</button>
 
