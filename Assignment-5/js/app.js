@@ -8,7 +8,6 @@ $.getJSON("https://www.swollenhippo.com/getEmployeesByAPIKey.php?APIKey=Mickey20
 function buildEmployeeCard(){
     $.each(arrEmployees,function(i,person){
             let strHTML = '<div class="card col-3 mt-5 ml-3">';
-            strHTML += '<img src="images/profile.png" alt="Profile Image" style="margin:auto; max-width:100%;">';
             strHTML += '<h3 class="text-center"><a href="mailto:' + person.Email + '">' + person.FirstName + ' ' + person.LastName + '</a></h3>';
             strHTML += '<h4 class="text-center">' + person.Postion +'</h4>';
             strHTML += '<h4 class="mt-3">Profile Details</h4>';
@@ -26,7 +25,9 @@ function buildEmployeeCard(){
             strHTML += '</div>';
             strHTML += '</div>';
             $('#divEmployeeCards').append(strHTML);
+            $('#tblEmployees tbody').append('<tr><td>' + person.FirstName + '</td><td>' + person.LastName + '</td></tr>');
     });
+    $('#tblEmployees').DataTable();
 }
 
 $(document).on('click','.btnCalculatePay',function() {
