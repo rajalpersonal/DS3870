@@ -53,11 +53,11 @@ namespace getVehicles
             string strBrand = req.Query["Brand"];
             string strModel = req.Query["Model"];
 
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            log.LogInformation("HTTP trigger on getVehicles processed a request for: " + strBrand);
 
             Brand Toyota = new Brand("Toyota", "1540 Interstate Dr", "Cookeville", "TN", "38501");
             Brand Ford = new Brand("Ford", "1600 Interstate Dr", "Cookeville", "TN", "38501");
-            Brand Volkswagen = new Brand("Volkswaggon", "2431 Gallatin Pike", "Madison", "TN", "37115");
+            Brand Volkswagen = new Brand("Volkswagen", "2431 Gallatin Pike", "Madison", "TN", "37115");
 
             Vehicle Camry = new Vehicle("Toyota", "Camry", 2022, 28);
             Vehicle Supra = new Vehicle("Toyota", "Supra", 2022, 25);
@@ -69,26 +69,48 @@ namespace getVehicles
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
 
-            Brand[] arrBrand = new Brand[] { Toyota, Ford, Volkswagen };
-            List<Brand> lstBrand = new List<Brand>();
+            List<Vehicle> arrVehicle = new List<Vehicle>();
+            arrVehicle.Add(Camry);
+            arrVehicle.Add(Supra);
+            arrVehicle.Add(Mustang);
+            arrVehicle.Add(Bronco);
+            arrVehicle.Add(Jetta);
+            arrVehicle.Add(Golf);
 
-            Vehicle[] arrVehicles = new Vehicle[] { Camry, Supra, Mustang, Bronco, Jetta, Golf };
-            List<Vehicle> lstVehicle = new List<Vehicle>();
-
-            foreach (Brand brandVehicle in arrBrand)
+            List<Vehicle> lstToyota = new List<Vehicle>();
+            List<Vehicle> lstFord = new List<Vehicle>();
+            List<Vehicle> lstVolkswagen = new List<Vehicle>();
+            foreach(Vehicle vCurrent in arrVehicle)
             {
-                if (strBrand == brandVehicle.Name)
+                if(vCurrent.Brand == Toyota)
                 {
-                    lstBrand.Add(brandVehicle);
+                    lstToyota.Add(vCurrent);
+                }
+                else if (vCurrent.Brand == Ford)
+                {
+                    lstFord.Add(vCurrent);
+                }
+                else
+                {
+                    lstVolkswagen.Add(vCurrent);
                 }
             }
-            if (lstBrand.Count > 0)
+
+            List<Vehicle> lstVehicle = new List<Vehicle>();
+            foreach (Vehicle vCurrent in arrVehicle)
             {
-                return new OkObjectResult(lstBrand);
+                if (strModel == vCurrent.Model)
+                {
+                    lstVehicle.Add(vCurrent);
+                }
+            }
+            if (lstVehicle.Count > 0)
+            {
+                return new OkObjectResult(lstVehicle);
             }
             else
             {
-                return new OkObjectResult("Brand Not Found");
+                return new OkObjectResult("Car Not Found");
             }
         }
     }
