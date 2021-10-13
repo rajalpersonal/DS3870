@@ -31,11 +31,11 @@ namespace getVehicles
         }
         private class Vehicle
         {
-            public object Brand { get; set; }
+            public Brand Brand { get; set; }
             public string Model { get; set; }
             public int Year { get; set; }
             public double MPG { get; set; }
-            public Vehicle(object objBrand, string strModel, int intYear, double dblMPG)
+            public Vehicle(Brand objBrand, string strModel, int intYear, double dblMPG)
             {
                 Brand = objBrand;
                 Model = strModel;
@@ -59,12 +59,12 @@ namespace getVehicles
             Brand Ford = new Brand("Ford", "1600 Interstate Dr", "Cookeville", "TN", "38501");
             Brand Volkswagen = new Brand("Volkswagen", "2431 Gallatin Pike", "Madison", "TN", "37115");
 
-            Vehicle Camry = new Vehicle("Toyota", "Camry", 2022, 28);
-            Vehicle Supra = new Vehicle("Toyota", "Supra", 2022, 25);
-            Vehicle Mustang = new Vehicle("Ford", "Mustang", 2021, 21);
-            Vehicle Bronco = new Vehicle("Ford", "Bronco", 2021, 20);
-            Vehicle Jetta = new Vehicle("Volkswagen", "Jetta", 2021, 30);
-            Vehicle Golf = new Vehicle("Volkswagen", "Golf", 2021, 29);
+            Vehicle Camry = new Vehicle(Toyota, "Camry", 2022, 28);
+            Vehicle Supra = new Vehicle(Toyota, "Supra", 2022, 25);
+            Vehicle Mustang = new Vehicle(Ford, "Mustang", 2021, 21);
+            Vehicle Bronco = new Vehicle(Ford, "Bronco", 2021, 20);
+            Vehicle Jetta = new Vehicle(Volkswagen, "Jetta", 2021, 30);
+            Vehicle Golf = new Vehicle(Volkswagen, "Golf", 2021, 29);
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
@@ -77,10 +77,7 @@ namespace getVehicles
             arrVehicle.Add(Jetta);
             arrVehicle.Add(Golf);
 
-            List<Vehicle> lstToyota = new List<Vehicle>();
-            List<Vehicle> lstFord = new List<Vehicle>();
-            List<Vehicle> lstVolkswagen = new List<Vehicle>();
-            foreach(Vehicle vCurrent in arrVehicle)
+            /*foreach(Vehicle vCurrent in arrVehicle)
             {
                 if(vCurrent.Brand == Toyota)
                 {
@@ -94,12 +91,12 @@ namespace getVehicles
                 {
                     lstVolkswagen.Add(vCurrent);
                 }
-            }
+            }*/
 
             List<Vehicle> lstVehicle = new List<Vehicle>();
             foreach (Vehicle vCurrent in arrVehicle)
             {
-                if (strModel == vCurrent.Model)
+                if (strModel == vCurrent.Model && strBrand == vCurrent.Brand.Name)
                 {
                     lstVehicle.Add(vCurrent);
                 }
