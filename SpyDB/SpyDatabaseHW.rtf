@@ -1,0 +1,154 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww23080\viewh16380\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 1. \
+string strQuery = \'93SELECT FirstName, LastName, CodeName FROM tblEmployees\'94;\
+DataSet dsSpyTable = new DataSet ();\
+string strconnection = \'93\cf2 \expnd0\expndtw0\kerning0
+Server=Provided\'94\cf0 \kerning1\expnd0\expndtw0 \
+try \
+\{\
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))\
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))\
+	\{\
+		SqlDataAdapter daSpyTable = new SqlDataAdapter(comSpyTable);\
+		daSpyTable.Fill(dsSpyTable);\
+		return new OkObjectResult(JsonConvert.SerializeObject(dsSpyTable.Tables[0]));\
+	\}\
+\
+\}\
+catch (Exception ex)\
+\{\
+	return new OkObjectResult(ex.Message.ToString());\
+\}\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+2. \
+string strQuery = \'93SELECT FirstName, LastName, City, State, AgencyName FROM tblEmployees AS E LEFT JOIN tblAgencies AS A ON E.Agency = A.AgencyID\'94;\
+DataSet dsSpyTable = new DataSet ();\
+string strconnection = \'93\cf2 \expnd0\expndtw0\kerning0
+Server=Provided\'94\cf0 \kerning1\expnd0\expndtw0 \
+try \
+\{\
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))\
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))\
+	\{\
+		SqlDataAdapter daSpyTable = new SqlDataAdapter(comSpyTable);\
+		daSpyTable.Fill(dsSpyTable);\
+		return new OkObjectResult(JsonConvert.SerializeObject(dsSpyTable.Tables[0]));\
+	\}\
+\}\
+catch (Exception ex)\
+\{\
+	return new OkObjectResult(ex.Message.ToString());\
+\}\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+3.\
+string strQuery = \'93SELECT VIN FROM tblVehicles WHERE Make = @parMake\'94;\
+DataSet dsSpyTable = new DataSet ();\
+string strconnection = \'93\cf2 \expnd0\expndtw0\kerning0
+Server=Provided\'94\cf0 \kerning1\expnd0\expndtw0 \
+try \
+\{\
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))\
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))\
+	\{\
+		SqlParameter parVin = new SqlParameter(\'93parMake\'94, SqlDbType.VarChar);\
+		parMake.Value = \'91Ford\'92;\
+		comSpyTable.Parameters.Add(parMake);	\
+	\
+		SqlDataAdapter daSpyTable = new SqlDataAdapter(comSpyTable);\
+		daSpyTable.Fill(dsSpyTable);\
+		return new OkObjectResult(JsonConvert.SerializeObject(dsSpyTable.Tables[0]));	\}\
+\
+\}\
+catch (Exception ex)\
+\{\
+	return new OkObjectResult(ex.Message.ToString());\
+\}\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+4.\
+string strQuery = \'93SELECT Agent FROM tblEmployees AS E LEFT JOIN tblAgencies AS G ON E.Agency = G.AgencyID LEFT JOIN tblAssignments AS A ON G.AgencyID = A.Agent LEFT JOIN tblMissions AS M ON A.Mission = M.MissionID WHERE MissionName = @parM AND AgentRole = @parAR\'94;\
+DataSet dsSpyTable = new DataSet ();\
+string strconnection = \'93\cf2 \expnd0\expndtw0\kerning0
+Server=Provided\'94\cf0 \kerning1\expnd0\expndtw0 \
+try \
+\{\
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))\
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))\
+	\{\
+		SqlParameter parM = new SqlParameter(\'93parM\'94, SqlDbType.VarChar);\
+		parM.Value = \'91Operation Awesome Eagle\'92;\
+		comSpyTable.Parameters.Add(parM);\
+		\
+		SqlParameter parAR = new SqlParameter(\'93parAR\'94, SqlDbType.VarChar);\
+		parAR.Value = \'91Lead Field Agent\'92;\
+		comSpyTable.Parameters.Add(parAR);\
+	\
+		SqlDataAdapter daSpyTable = new SqlDataAdapter(comSpyTable);\
+		daSpyTable.Fill(dsSpyTable);\
+		return new OkObjectResult(JsonConvert.SerializeObject(dsSpyTable.Tables[0]));\
+	\}\
+\
+\}\
+catch (Exception ex)\
+\{\
+	return new OkObjectResult(ex.Message.ToString());\
+\}\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+5.\
+string strQuery = \'93SELECT CodeName FROM tblEmployees AS E JOIN tblAgencies AS A ON E.City = A.City WHERE NationalAffiliation = @parN\'94;\
+DataSet dsSpyTable = new DataSet ();\
+string strconnection = \'93\cf2 \expnd0\expndtw0\kerning0
+Server=Provided\'94\cf0 \kerning1\expnd0\expndtw0 \
+try \
+\{\
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))\
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))	\{\
+		SqlParameter parN = new SqlParameter(\'93parN\'94, SqlDbType.VarChar);\
+		parN.Value = \'91Canada\'92;\
+		comSpyTable.Parameters.Add(parN);	\
+	\
+		SqlDataAdapter daSpyTable = new SqlDataAdapter(comSpyTable);\
+		daSpyTable.Fill(dsSpyTable);\
+		return new OkObjectResult(JsonConvert.SerializeObject(dsSpyTable.Tables[0]));\
+	\}\
+\
+\}\
+catch (Exception ex)\
+\{\
+	return new OkObjectResult(ex.Message.ToString());\
+\}\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+6.\
+string strQuery = \'93SELECT CodeName FROM tblEmployees AS E LEFT JOIN tblAgencies AS G ON E.Agency = G.AgencyID LEFT JOIN tblAssignments AS A ON G.AgencyID = A.Agent LEFT JOIN tblMissions AS M ON A.Mission = M.MissionID WHERE AgentRole = @parA AND MissionName = @parM\'94;\
+DataSet dsSpyTable = new DataSet ();\
+string strconnection = \'93\cf2 \expnd0\expndtw0\kerning0
+Server=Provided\'94\cf0 \kerning1\expnd0\expndtw0 \
+try \
+\{\
+	using (SqlConnection conSpyAgencies = new SqlConnection(strConnection))\
+	using (SqlCommand comSpyAgencies = new SqlCommand(strQuery, conSpyAgencies))\
+	\{\
+		SqlParameter parA = new SqlParameter(\'93parA\'94, SqlDbType.VarChar);\
+		parA.Value != \'91Agent In Charge\'92;\
+		comSpyTable.Parameters.Add(parA);	\
+		\
+		SqlParameter parM = new SqlParameter(\'93parM\'94, SqlDbType.VarChar);\
+		parM.Value = \'91Book Drop\'92;\
+		comSpyTable.Parameters.Add(parM);\
+\
+		SqlDataAdapter daSpyTable = new SqlDataAdapter(comSpyTable);\
+		daSpyTable.Fill(dsSpyTable);\
+		return new OkObjectResult(JsonConvert.SerializeObject(dsSpyTable.Tables[0]));\
+	\}\
+\
+\}\
+catch (Exception ex)\
+\{\
+	return new OkObjectResult(ex.Message.ToString());\
+\}\
+}
