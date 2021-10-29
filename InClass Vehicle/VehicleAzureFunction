@@ -1,0 +1,39 @@
+string strQuery = "INSERT INTO tblVehicles (Make, Model, Year, Armored, VIN) VALUES (@parMake, @parModel, @parYear, @parArmored, @parVIN)";
+DataSet dsSpyTable = new DataSet ();
+string strConnection = "Server Provided";
+try
+{
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))
+	{
+		SqlParameter parMake = new SqlParameter("parMake", SqlDbType.VarChar);
+		parMake.Value = @parMake;
+		comSpyTable.Parameters.Add(parMake);
+
+		SqlParameter parModel = new SqlParameter("parModel", SqlDbType.VarChar);
+		parModel.Value = @parModel;
+		comSpyTable.Parameters.Add(parModel);
+
+		SqlParameter parYear = new SqlParameter("parYear", SqlDbType.Int);
+		parYear.Value = @parYear;
+		comSpyTable.Parameters.Add(parYear);
+
+		SqlParameter parArmored = new SqlParameter("parArmored", SqlDbType.Bool);
+		parArmored.Value = @parArmored;
+		comSpyTable.Parameters.Add(parArmored);
+
+		SqlParameter parVIN = new SqlParameter("parVIN", SqlDbType.VarChar);
+		parVIN.Value = @parVIN;
+		comSpyTable.Parameters.Add(parVIN);
+
+		comSpyTable.Connection = conSpyTable;
+		comSpyTable.CommandText = strQuery;
+		conSpyTable.Open();
+		comSpyTable.ExecuteNonQuery();
+		conSpyTable.Close();
+	}
+}
+catch (Exception ex)
+{
+	return new OkObjectResult(ex.Message.ToString());
+}
