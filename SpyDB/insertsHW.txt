@@ -1,6 +1,5 @@
 1.
 string strQuery = "INSERT INTO tblAgencies (AgencyName, AgencyID, City, State, NationalAffiliation) VALUES (@parAgencyName, @parAgencyID, @parAgencyCity, @parAgencyState, @parAgencyNation)";
-DataSet dsSpyTable = new DataSet ();
 string strConnection = "Server Provided";
 try
 {
