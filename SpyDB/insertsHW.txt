@@ -1,0 +1,216 @@
+1.
+string strQuery = "INSERT INTO tblAgencies (AgencyName, AgencyID, City, State, NationalAffiliation) VALUES (@parAgencyName, @parAgencyID, @parAgencyCity, @parAgencyState, @parAgencyNation)";
+string strConnection = "Server Provided";
+try
+{
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))
+	{
+		SqlParameter parAgencyName = new SqlParameter("parAgencyName", SqlDbType.VarChar);
+		parAgencyName.Value = "Central Intelligence Agency";
+		comSpyTable.Parameters.Add(parAgencyName);
+
+		SqlParameter parAgencyID = new SqlParameter("parAgencyID", SqlDbType.VarChar);
+		parAgencyID.Value = "39220c1e-21bb-46e4-a2af-19b72c1643f3";
+		comSpyTable.Parameters.Add(parAgencyID);
+
+		SqlParameter parAgencyCity = new SqlParameter("parAgencyCity", SqlDbType.VarChar);
+		parAgencyCity.Value = "Nashville";
+		comSpyTable.Parameters.Add(parAgencyCity);
+
+		SqlParameter parAgencyState = new SqlParameter("parAgencyState", SqlDbType.VarChar);
+		parAgencyState.Value = "TN";
+		comSpyTable.Parameters.Add(parAgencyState);
+
+		SqlParameter parAgencyNation = new SqlParameter("parAgencyNation", SqlDbType.VarChar);
+		parAgencyNation.Value = "US";
+		comSpyTable.Parameters.Add(parAgencyNation);
+
+		comSpyTable.Connection = conSpyTable;
+		comSpyTable.CommandText = strQuery;
+		conSpyTable.Open();
+		comSpyTable.ExecuteNonQuery();
+		conSpyTable.Close();
+	}
+}
+catch (Exception ex)
+{
+	return new OkObjectResult(ex.Message.ToString());
+}
+----------------------------------------------------------------------------------------------
+2.
+string strQuery = "INSERT INTO tblVehicles (Make, Model, Year, Armored, VIN) VALUES (@parMake, @parModel, @parYear, @parArmored, @parVIN)";
+DataSet dsSpyTable = new DataSet ();
+string strConnection = "Server Provided";
+try
+{
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))
+	{
+		SqlParameter parMake = new SqlParameter("parMake", SqlDbType.VarChar);
+		parMake.Value = "Toyota";
+		comSpyTable.Parameters.Add(parMake);
+
+		SqlParameter parModel = new SqlParameter("parModel", SqlDbType.VarChar);
+		parModel.Value = "Tundra";
+		comSpyTable.Parameters.Add(parModel);
+
+		SqlParameter parYear = new SqlParameter("parYear", SqlDbType.Int);
+		parYear.Value = "2000";
+		comSpyTable.Parameters.Add(parYear);
+
+		SqlParameter parArmored = new SqlParameter("parArmored", SqlDbType.Bool);
+		parArmored.Value = "0";
+		comSpyTable.Parameters.Add(parArmored);
+
+		SqlParameter parVIN = new SqlParameter("parVIN", SqlDbType.VarChar);
+		parVIN.Value = "7J3ZZ56T7834500003";
+		comSpyTable.Parameters.Add(parVIN);
+
+		comSpyTable.Connection = conSpyTable;
+		comSpyTable.CommandText = strQuery;
+		conSpyTable.Open();
+		comSpyTable.ExecuteNonQuery();
+		conSpyTable.Close();
+	}
+}
+catch (Exception ex)
+{
+	return new OkObjectResult(ex.Message.ToString());
+}
+----------------------------------------------------------------------------------------------
+3.
+string strQuery = "INSERT INTO tblEmployees (FirstName, LastName, CodeName, StreetAddress1, City, State, Zip, Country, Agency) VALUES(@parFirstName, @parLastName, @parCodeName, @parAddress, @parCity, @parState, @parZip, @parCountry, @parAgency)";
+DataSet dsSpyTable = new DataSet ();
+string strConnection = "Server Provided";
+try
+{
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))
+	{
+		SqlParameter parFirstName = new SqlParameter("parFirstName", SqlDbType.VarChar);
+		parFirstName.Value = "Sterling";
+		comSpyTable.Parameters.Add(parFirstName);
+
+		SqlParameter parLastName = new SqlParameter("parLastName", SqlDbType.VarChar);
+		parLastName.Value = "Archer";
+		comSpyTable.Parameters.Add(parLastName);
+
+		SqlParameter parCodeName = new SqlParameter("parCodeName", SqlDbType.VarChar);
+		parCodeName.Value = "Duchess";
+		comSpyTable.Parameters.Add(parAgencyCity);
+
+		SqlParameter parAddress = new SqlParameter("parAddress", SqlDbType.VarChar);
+		parAddress.Value = "1 Hogan Place";
+		comSpyTable.Parameters.Add(parAddress);
+
+		SqlParameter parCity = new SqlParameter("parCity", SqlDbType.VarChar);
+		parCity.Value = "New York";
+		comSpyTable.Parameters.Add(parCity);
+		
+		SqlParameter parState = new SqlParameter("parState", SqlDbType.VarChar);
+		parState.Value = "NY";
+		comSpyTable.Parameters.Add(parState);
+
+		SqlParameter parZip = new SqlParameter("parZip", SqlDbType.VarChar);
+		parZip.Value = "10013";
+		comSpyTable.Parameters.Add(parZip);
+
+		SqlParameter parCountry = new SqlParameter("parCountry", SqlDbType.VarChar);
+		parCountry.Value = "US";
+		comSpyTable.Parameters.Add(parCountry);
+
+		SqlParameter parAgency = new SqlParameter("parAgency", SqlDbType.VarChar);
+		parAgency.Value = "Central Intelligence Agency";
+		comSpyTable.Parameters.Add(parAgency);
+
+		comSpyTable.Connection = conSpyTable;
+		comSpyTable.CommandText = strQuery;
+		conSpyTable.Open();
+		comSpyTable.ExecuteNonQuery();
+		conSpyTable.Close();
+	}
+}
+catch (Exception ex)
+{
+	return new OkObjectResult(ex.Message.ToString());
+}
+----------------------------------------------------------------------------------------------
+4.
+string strQuery = "UPDATE tblVehicles SET Armored = @parArmored WHERE VIN = @parVIN";
+DataSet dsSpyTable = new DataSet ();
+string strConnection = "Server Provided";
+try
+{
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))
+	{
+		SqlParameter parVIN = new SqlParameter("parVIN", SqlDbType.VarChar);
+		parVIN.Value = "7J3ZZ56T7834500003";
+		comSpyTable.Parameters.Add(parVIN);
+
+		comSpyTable.Connection = conSpyTable;
+		comSpyTable.CommandText = strQuery;
+		conSpyTable.Open();
+		comSpyTable.ExecuteNonQuery();
+		conSpyTable.Close();
+	}
+}
+catch (Exception ex)
+{
+	return new OkObjectResult(ex.Message.ToString());
+}
+----------------------------------------------------------------------------------------------
+5.
+string strQuery = "DELETE FROM tblEmployees WHERE FirstName = @parFirstName";
+DataSet dsSpyTable = new DataSet ();
+string strConnection = "Server Provided";
+try
+{
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))
+	{
+		comSpyTable.Connection = conSpyTable;
+		comSpyTable.CommandText = strQuery;
+		conSpyTable.Open();
+		comSpyTable.ExecuteNonQuery();
+		conSpyTable.Close();
+	}
+}
+catch (Exception ex)
+{
+	return new OkObjectResult(ex.Message.ToString());
+}
+----------------------------------------------------------------------------------------------
+6.
+string strQuery = "INSERT INTO tblAssignments (AssignmentID, Mission, Agent, AgentRole) VALUES (CONVERT(varchar(50), NEWID()), @parMission, @parAgent, @parAgentRole)";
+DataSet dsSpyTable = new DataSet ();
+string strConnection = "Server Provided";
+try
+{
+	using (SqlConnection conSpyTable = new SqlConnection(strConnection))
+	using (SqlCommand comSpyTable = new SqlCommand(strQuery, conSpyTable))
+	{
+		SqlParameter parMission = new SqlParameter("parMission", SqlDbType.VarChar);
+		parMission.Value = "Spicy Chili";
+		comSpyTable.Parameters.Add(parMission);
+		
+		SqlParameter parAgent = new SqlParameter("parAgent", SqlDbType.VarChar);
+		parAgent.Value = "Lana Kane";
+		comSpyTable.Parameters.Add(parAgent);
+
+		SqlParameter parAgentRole = new SqlParameter("parAgentRole", SqlDbType.VarChar);
+		parAgentRole.Value = "Primary Agent";
+		comSpyTable.Parameters.Add(parAgentRole);
+
+		comSpyTable.Connection = conSpyTable;
+		comSpyTable.CommandText = strQuery;
+		conSpyTable.Open();
+		comSpyTable.ExecuteNonQuery();
+		conSpyTable.Close();
+	}
+}
+catch (Exception ex)
+{
+	return new OkObjectResult(ex.Message.ToString());
+}

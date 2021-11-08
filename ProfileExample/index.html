@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 4</title>
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+</head>
+
+<body class = "bg-primary">
+    <div class = "card col-6 offset-3 mt-5">
+        <h3 class = "text-center"><a href="mailto:rmpatel42@tntech.edu">Rajal Patel</a></h3>
+        <h4 class = "text-center">Business and Information Technology</h4>
+        <h4 class = "mt-3">Profile Details</h4>
+        
+        <p>Phone: (931) 265-6435</p>
+        <p>Address: 1348 Buckingham PL, Cookeville, TN 38501</p>
+        <p>Assignment: Johnson Hall</p>
+
+        <div class = "form-group" id = "divHours">
+            <label for = "txtPayRate">PayRate</label>
+            <input id = "txtPayRate">
+        </div>
+
+        <div class = "form-group" id = "divHours">
+            <label for = "txtHours">Hours Worked</label>
+            <input id = "txtHours">
+        </div>
+
+        <div class = "form-group">
+            <label for = "cboEmployeeType">Employee Type</label>
+            <select id = "cboEmployeeType">
+                <option></option>
+                <option value= "FULL">Full Time</option>
+                <option value= "PART">Part Time</option>
+            </select>
+        </div>
+
+        <button type = "button" id = "btnTest" class = "btn btn-warning mb-3"> Calculate</button>
+
+    </div>
+
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/bootstrap.bundle.min.js"></script>
+    <script src = "js/app.js"></script>
+
+</body>
+</html>
